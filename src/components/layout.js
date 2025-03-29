@@ -27,12 +27,12 @@ export default function Layout({ children }) {
   }
 
   return (
-    <Authenticator>
+    //<Authenticator>
     <ThemeProvider>
       <CarRentalNavBar overrides = {navbarOverrides} width="1440px" />      
       <Divider/>
       <main>{children}</main>
     </ThemeProvider>
-    </Authenticator>
+    //</Authenticator>
   )
 }

@@ -8,7 +8,7 @@ import '@aws-amplify/ui-react/styles.css'
 import { Inter } from "next/font/google";
 import { useState, useEffect, ReactElement } from "react";
 import { generateClient } from "aws-amplify/data";
-import type { Schema } from "../../amplify/data/resource";
+//import type { Schema } from "../../amplify/data/resource";
 import {savedCars} from "../../amplify/data/Cars"
 import { ThemeProvider, Divider} from '@aws-amplify/ui-react'
 import "@aws-amplify/ui-react/styles.css";
@@ -41,17 +41,6 @@ const geistMono = Geist_Mono({
 
 
 const Page: NextPageWithLayout = () => {
-  const [rentalCars, setRentalCar] = useState<Array<Schema["RentalCar"]["type"]>>([]);
-  function listRentalCar() {
-    client.models.RentalCar.observeQuery().subscribe({
-      next: (data) => setRentalCar([...data.items]),
-    });
-  }
-
-  useEffect(() => {
-    listRentalCar();
-  }, []);
-
  // return <ul>{todos.map(todo => <li key={todo.id}>{todo.content}</li>)}</ul>
   /*
   Bugatti
@@ -119,9 +108,8 @@ const Page: NextPageWithLayout = () => {
   </div>
   */
  <div>
-      <AddCar overrides = {addCarOverrides}/>
       <Divider/>
-      <ul>{rentalCars.map(rentalCar => <li key={rentalCar.id}><Link href={`/cars/${rentalCar.id}`}>{rentalCar.name}: {rentalCar.description}</Link></li>)}</ul>
+      <ul>{savedCars.map(savedCar => <li key={savedCar.id}><Link href={`/cars/${savedCar.id}`}>{savedCar.name}: {savedCar.description}</Link></li>)}</ul>
 
   </div>
     /*  <ul>{rentalCars.map(rentalCar => <li key={rentalCar.id}><Link href={`/api/cars/${rentalCar.id}`}>${rentalCar.name}</Link></li>)}</ul> 
