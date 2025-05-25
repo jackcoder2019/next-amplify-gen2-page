@@ -1,5 +1,5 @@
 "use client"
-
+import type { InferGetStaticPropsType, GetStaticProps } from 'next'
 import { useRouter } from 'next/router';
 import {CarRentalCard} from "../../ui-components"
 import { generateClient } from "aws-amplify/data";
@@ -27,6 +27,7 @@ export async function getStaticPaths() {
 interface CarProps {
   savedCar: Car;
 }  
+
 export const getStaticProps: GetStaticProps<CarProps> = async ({ params }) => {
   const savedCar = savedCars.find((p) => p.id === params?.id);
     
@@ -35,11 +36,11 @@ export const getStaticProps: GetStaticProps<CarProps> = async ({ params }) => {
   }
     
   return {
-    props: { savedCar },
+    props: { savedCar }
   };
 };
-  
-const CarDetail : NextPageWithLayout = ({ savedCar }) => {
+
+const CarDetail : NextPageWithLayout<CarProps> = ({savedCar}) => {
   return (
     <div>
       <CarRentalCard overrides = { 

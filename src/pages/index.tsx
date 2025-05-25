@@ -24,7 +24,7 @@ import { Amplify } from "aws-amplify";
 import outputs from "../../amplify_outputs.json";
 
 Amplify.configure(outputs, {ssr: true});
-const client = generateClient<Schema>();
+//const client = generateClient<Schema>();
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -71,6 +71,7 @@ const Page: NextPageWithLayout = () => {
         setImageUrl (event.target.value);
       } 
     },
+    /*
     "Button" : {
       onClick : () => {
         client.models.RentalCar.create({
@@ -81,6 +82,7 @@ const Page: NextPageWithLayout = () => {
         });
       } 
     },
+    */
   }
 
   const carRentalCardOverrides = {
